@@ -1,0 +1,218 @@
+html {
+  font-family: 'Montserrat', sans-serif; }
+
+body {
+  margin: 0;
+  background-color: #1a1b1c;
+  color: #fff; }
+  body[data-theme="bright"] {
+    background-color: #fff;
+    color: #1a1b1c; }
+
+.o-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1000px;
+  margin: auto; }
+
+h1 {
+  font-weight: 600;
+  margin-bottom: 0; }
+
+small {
+  font-weight: 200; }
+
+.c-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 150px;
+  justify-content: center;
+  align-items: center; }
+
+.c-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%; }
+  .c-content__burger-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%; }
+
+.c-toolbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%; }
+  .c-toolbar__button {
+    flex-grow: 1;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 5px;
+    padding: 12px;
+    color: #fff;
+    outline: none; }
+    body[data-theme="bright"] .c-toolbar__button {
+      border: 1px solid #1a1b1c;
+      color: #1a1b1c; }
+    body[data-theme="bright"] .c-toolbar__button--theme {
+      border: 1px solid #fff;
+      color: #fff;
+      background-color: #1a1b1c; }
+    body[data-theme="bright"] .c-toolbar__button--theme[data-theme="bright"] {
+      border: 1px solid #fff;
+      color: #fff;
+      background-color: #1a1b1c; }
+    body[data-theme="dark"] .c-toolbar__button--theme[data-theme="bright"] {
+      border: 1px solid #fff;
+      color: #fff;
+      background-color: transparent; }
+    body[data-theme="bright"] .c-toolbar__button--theme[data-theme="dark"] {
+      border: 1px solid #1a1b1c;
+      color: #1a1b1c;
+      background-color: transparent; }
+    body[data-theme="dark"] .c-toolbar__button--theme[data-theme="dark"] {
+      border: 1px solid #1a1b1c;
+      color: #1a1b1c;
+      background-color: #fff; }
+
+.c-footer {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .c-footer a {
+    color: inherit; }
+
+.c-burger {
+  font-size: 75px;
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition-property: height, width, transform, top, opacity;
+  transition: ease-in-out 0.2s; }
+  .c-burger--small {
+    width: 99px;
+    height: 99px; }
+  .c-burger__lines {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: 0;
+    background-color: #1a1b1c;
+    transition-property: height, width, transform, top, opacity;
+    transition: ease-in-out 0.2s;
+    /**
+    BURGER
+     */
+    /**
+      Cross
+     */
+    /**
+    Arrow
+     */ }
+    .c-burger__lines--dark {
+      background-color: #fff; }
+    .c-burger__lines:after, .c-burger__lines:before {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background-color: #1a1b1c;
+      transition-property: height, width, transform, top, opacity;
+      transition: ease-in-out 0.2s; }
+      .c-burger__lines:after--dark, .c-burger__lines:before--dark {
+        background-color: #fff; }
+    .c-burger__lines:before {
+      transform: translateY(0) translateX(0) rotate(0) scaleX(0);
+      opacity: 1; }
+    .c-burger__lines:after {
+      transform: translateY(0) translateX(0) rotate(0) scaleX(0);
+      opacity: 1; }
+    .c-burger__lines .c-burger--line-grow {
+      width: 100%; }
+    .c-burger--initial .c-burger__lines {
+      width: 100%;
+      height: 15px;
+      margin-top: -7.5px;
+      transition-property: height, width, transform, top, opacity;
+      transition: ease-in-out 0.2s; }
+      .c-burger--initial .c-burger__lines:before {
+        transform: translateY(-50px); }
+      .c-burger--initial .c-burger__lines:after {
+        transform: translateY(50px); }
+    .c-burger--plus .c-burger__lines,
+    .c-burger--cross .c-burger__lines {
+      width: 100%;
+      height: 15px;
+      margin-top: -7.5px;
+      transform: rotate(45deg);
+      background-color: #fff; }
+      .c-burger--plus .c-burger__lines:before,
+      .c-burger--cross .c-burger__lines:before {
+        transform: rotate(-90deg);
+        background-color: #fff; }
+      .c-burger--plus .c-burger__lines:after,
+      .c-burger--cross .c-burger__lines:after {
+        opacity: 0; }
+    .c-burger--plus .c-burger__lines {
+      transform: rotate(0); }
+    .c-burger--minus .c-burger__lines {
+      width: 100%;
+      height: 15px;
+      margin-top: -7.5px;
+      transform: rotate(0); }
+      .c-burger--minus .c-burger__lines:before {
+        opacity: 0; }
+      .c-burger--minus .c-burger__lines:after {
+        opacity: 0; }
+    .c-burger--arrow-up .c-burger__lines,
+    .c-burger--arrow-down .c-burger__lines,
+    .c-burger--arrow-right .c-burger__lines,
+    .c-burger--arrow-left .c-burger__lines {
+      width: 100%;
+      height: 15px;
+      margin-top: -7.5px;
+      transition-property: height, width, transform, top, opacity;
+      transition: ease-in-out 0.2s; }
+      .c-burger--arrow-up .c-burger__lines:before,
+      .c-burger--arrow-down .c-burger__lines:before,
+      .c-burger--arrow-right .c-burger__lines:before,
+      .c-burger--arrow-left .c-burger__lines:before {
+        transform: translateY(-26.25px) translateX(48.75px) rotate(45deg) scaleX(0.6); }
+      .c-burger--arrow-up .c-burger__lines:after,
+      .c-burger--arrow-down .c-burger__lines:after,
+      .c-burger--arrow-right .c-burger__lines:after,
+      .c-burger--arrow-left .c-burger__lines:after {
+        transform: translateY(26.25px) translateX(48.75px) rotate(-45deg) scaleX(0.6); }
+    .c-burger--arrow-up .c-burger__lines {
+      transform: rotate(-90deg); }
+    .c-burger--arrow-down .c-burger__lines {
+      transform: rotate(90deg); }
+    .c-burger--arrow-left .c-burger__lines {
+      transform: rotate(180deg); }
+  .c-burger--dark .c-burger__lines {
+    background-color: #fff; }
+    .c-burger--dark .c-burger__lines:before, .c-burger--dark .c-burger__lines:after {
+      background-color: #fff; }
+  .c-burger--bright .c-burger__lines {
+    background-color: #1a1b1c; }
+    .c-burger--bright .c-burger__lines:before, .c-burger--bright .c-burger__lines:after {
+      background-color: #1a1b1c; }
+
+/*# sourceMappingURL=my-burger.css.map */

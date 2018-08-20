@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Burger Menu Component</title>
+    <link rel="stylesheet" href="./css/my-burger.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+
+    <div class="o-page">
+        <div class="c-header">
+            <h1>MyBurger</h1>
+            <small>A small burger menu button with css transitions and multiple variations</small>
+        </div>
+        <main class="c-content">
+            <div class="c-toolbar">
+                <button class="c-toolbar__button" data-variation="DEFAULT">Burger</button>
+                <button class="c-toolbar__button" data-variation="CROSS">Cross</button>
+                <button class="c-toolbar__button" data-variation="ARROW_UP">Arrow Up</button>
+                <button class="c-toolbar__button" data-variation="ARROW_RIGHT">Arrow right</button>
+                <button class="c-toolbar__button" data-variation="ARROW_DOWN">Arrow Down</button>
+                <button class="c-toolbar__button" data-variation="ARROW_LEFT">Arrow Left</button>
+                <button class="c-toolbar__button" data-variation="PLUS">Plus</button>
+                <button class="c-toolbar__button" data-variation="MINUS">Minus</button>
+                <button class="c-toolbar__button c-toolbar__button--theme c-toolbar__button--active" data-theme="dark">Dark</button>
+                <button class="c-toolbar__button c-toolbar__button--theme" data-theme="bright">Bright</button>
+            </div>
+            <!-- do not use buttons - there are flex bugs in firefox -->
+            <div class="c-content__burger-wrapper">
+                <span role="button" class="c-burger c-burger--dark" data-burger>
+                    <span class="c-burger__lines"></span>
+                </span>
+            </div>
+        </main>
+
+        <div class="c-footer">
+            by <a href="mailto:pwolter@hotmail.de"> Paul Wolter</a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/my-burger.js"></script>
+
+    <script>
+        const allToolbarButtons = document.querySelectorAll('.c-toolbar__button');
+        const burgerAPI = window.MyBurger.burgerComponent;
+        const burgerMenu = burgerAPI.registered[0];
+
+        function handleClickOnToolbarButton(event) {
+            if(event.target.dataset['theme']) {
+                setTheme(event.target);
+            } else {
+                setVariation(event.target);
+            }
+        }
+
+        function setVariation(eventTrigger) {
+            if(eventTrigger && eventTrigger.dataset['variation']) {
+                const variation = eventTrigger.dataset['variation'];
+                burgerMenu.setVariant(variation);
+            }
+        }
+        
+        function setTheme(eventTrigger) {
+            if(eventTrigger && eventTrigger.dataset['theme']) {
+                const body = document.querySelector('body');
+                const theme = eventTrigger.dataset['theme'];
+
+                switch(theme) {
+                    case 'bright': body.dataset.theme = 'bright'; burgerMenu.setTheme('BRIGHT'); break;
+                    case 'dark': body.dataset.theme = 'dark'; burgerMenu.setTheme('DARK'); break;
+                    default: body.dataset.theme = 'dark'; burgerMenu.setTheme('DARK');
+                }
+            }
+        }
+
+        allToolbarButtons.forEach(btn => {
+            btn.addEventListener('click', handleClickOnToolbarButton, false);
+        })
+    </script>
+
+</body>
+
+</html>

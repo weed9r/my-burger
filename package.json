@@ -1,0 +1,23 @@
+{
+  "name": "my-burger",
+  "version": "1.0.0",
+  "description": "A simple burger menu icon with css transitions and javascript api",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "browsersync": "browser-sync start --config bs-config.js",
+    "compile:scss": "node-sass --source-map true --source-map-contents true src/scss/my-burger.scss dist/css/my-burger.css",
+    "start": "parallelshell \"npm run watch\" \"npm run browsersync\"",
+    "watch:scss": "watch \"npm run compile:scss\" src/scss/",
+    "watch": "npm run watch:scss"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browsersync": "0.0.1-security",
+    "connect-history-api-fallback": "^1.5.0",
+    "node-sass": "^4.9.3",
+    "parallelshell": "^3.0.2",
+    "watch": "^1.0.2"
+  }
+}

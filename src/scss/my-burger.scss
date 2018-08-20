@@ -1,0 +1,190 @@
+// Import for better docu styling 
+@import 'doc';
+// remove this if you wan't to include the burger to your project
+
+$burger-size: 40px !default;
+$burger-line-thickness:  $burger-size / 10 !default;
+
+// documentations purposes
+$burger-size: 150px;
+$burger-line-thickness:  $burger-size / 10;
+
+
+@mixin burger-transition() {
+  transition-property: height, width, transform, top, opacity;
+  transition: ease-in-out 0.2s;
+}
+
+
+.c-burger {
+  font-size: $burger-size / 2;
+  position: relative;
+  display: inline-block;
+  width: $burger-size;
+  height: $burger-size;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  @include burger-transition();
+
+  &--small {
+    width: $burger-size * 0.66;
+    height: $burger-size * 0.66;
+  }
+
+  &__lines {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: 0;
+    background-color: $background-dark;
+    &--dark {
+      background-color: $background-white;
+    }
+    @include burger-transition();
+
+    &:after,
+    &:before {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background-color: $background-dark;
+      &--dark {
+        background-color: $background-white;
+      }
+      @include burger-transition();
+    }
+
+    &:before {
+      transform: translateY(0) translateX(0) rotate(0) scaleX(0);
+      opacity: 1;
+    }
+
+    &:after {
+      transform: translateY(0) translateX(0) rotate(0) scaleX(0);
+      opacity: 1;
+    }
+
+    .c-burger--line-grow {
+      width: 100%;
+    }
+
+    /**
+    BURGER
+     */
+
+    .c-burger--initial & {
+      width: 100%;
+      height: $burger-line-thickness;
+      margin-top: -$burger-line-thickness / 2;
+      @include burger-transition();
+
+      &:before {
+        transform: translateY(-$burger-size / 3);
+      }
+
+      &:after {
+        transform: translateY($burger-size / 3);
+      }
+    }
+
+    /**
+      Cross
+     */
+
+    .c-burger--plus &,
+    .c-burger--cross & {
+      width: 100%;
+      height: $burger-line-thickness;
+      margin-top: -$burger-line-thickness / 2;
+      transform: rotate(45deg);
+      background-color: $background-white;
+
+      &:before {
+        transform: rotate(-90deg);
+        background-color: $background-white;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    .c-burger--plus & {
+      transform: rotate(0);
+    }
+
+
+    .c-burger--minus & {
+      width: 100%;
+      height: $burger-line-thickness;
+      margin-top: -$burger-line-thickness / 2;
+      transform: rotate(0);
+
+      &:before {
+        opacity: 0;
+      }
+      &:after {
+        opacity: 0;
+      }
+    }
+
+    /**
+    Arrow
+     */
+    .c-burger--arrow-up &,
+    .c-burger--arrow-down &,
+    .c-burger--arrow-right &,
+    .c-burger--arrow-left & {
+      width: 100%;
+      height: $burger-line-thickness;
+      margin-top: -$burger-line-thickness / 2;
+      @include burger-transition();
+
+      &:before {
+        transform: translateY(-$burger-size * 0.175) translateX($burger-size * 0.325) rotate(45deg) scaleX(0.6);
+      }
+
+      &:after {
+        transform: translateY($burger-size * 0.175) translateX($burger-size * 0.325) rotate(-45deg) scaleX(0.6);
+      }
+    }
+
+    .c-burger--arrow-up & {
+      transform: rotate(-90deg);
+    }
+    .c-burger--arrow-down & {
+      transform: rotate(90deg);
+    }
+    .c-burger--arrow-left & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--dark {
+    .c-burger__lines {
+      background-color: $background-white;
+
+      &:before,
+      &:after {
+        background-color: $background-white;
+      }
+    }
+  }
+
+  &--bright {
+    .c-burger__lines {
+      background-color: $background-dark;
+
+      &:before,
+      &:after {
+        background-color: $background-dark;
+      }
+    }
+  }
+}
